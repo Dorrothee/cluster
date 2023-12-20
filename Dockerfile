@@ -1,4 +1,8 @@
-FROM openjdk:17
-COPY target/cluster-1.0-SNAPSHOT.jar /app.jar
-EXPOSE 80
-CMD ["java", "-jar", "/app.jar"]
+FROM node:19.6
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+COPY .. ./
+CMD node index.js
